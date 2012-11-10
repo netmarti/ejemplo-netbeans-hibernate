@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="pruebaHibernate.Alumno" table="Alumno" >
+    <id name="numeroMatricula" column="numeroMatricula" type="long">
+      <generator class="increment"/>
+    </id>
+    <property name="nombre" column="nombre" type="string"/>
+    <property name="apellido" column="apellido" type="string"/>
+    <many-to-one cascade="all" class="pruebaHibernate.Direccion" name="direccion" column="idDireccion" />
+    <bag cascade="all" name="cursosInscritos" table="Alumnos_Cursos">
+      <key column="numeroMatricula"/>
+      <many-to-many class="pruebaHibernate.Curso" column="claveCurso"/>
+    </bag>
+    <many-to-one cascade="all" class="pruebaHibernate.Tutor" name="tutor" column="numeroTrabajador" />
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="pruebaHibernate.Trabajador" table="Trabajador" abstract="true" >
+        <id name="clave" column="clave" type="long">
+            <generator class="increment"/>
+        </id>
+        <property name="nombre" column="nombre" type="string"/>
+        <property name="apellido" column="apellido" type="string"/>
+        <joined-subclass name="pruebaHibernate.Tutor" table="Tutor">
+            <key column="claveTrabajador"/>
+            <property name="areaEspecializacion" column="areaEspecializacion" type="string"/>
+            <property name="gradoAcademico" column="gradoAcademico" type="string"/>
+        </joined-subclass>
+        <joined-subclass name="pruebaHibernate.DirectorDepartamento" table="DirectorDepartamento">
+            <key column="claveTrabajador"/>
+            <property name="departamento" column="departamento" type="string"/>
+            <property name="bonoProductividad" column="bonoProductividad" type="double"/>
+        </joined-subclass>
+    </class>
+</hibernate-mapping>
